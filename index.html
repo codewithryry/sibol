@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sibol - Grow More. Wait Less.</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+<style>
+  .font-poppins {
+    font-family: 'Poppins', sans-serif;
+  }
+  .btn-primary {
+    transition: all 0.3s ease;
+  }
+  .btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  .sidebar-icon-active {
+    color: #2E7D32;
+  }
+  .sidebar-icon-inactive {
+    color: #4B5563;
+  }
+</style>
+</head>
+<body class="flex bg-gray-50 font-poppins min-h-screen">
+<!-- Sidebar Navigation -->
+<div class="w-64 bg-white shadow-lg fixed inset-y-0 left-0 flex flex-col z-50">
+  <div class="p-4 bg-green-700 flex items-center space-x-2">
+    <svg class="w-8 h-8" viewBox="0 0 64 64" fill="none">
+      <path d="M32 8C18.7 8 8 18.7 8 32C8 45.3 18.7 56 32 56C45.3 56 56 45.3 56 32C56 18.7 45.3 8 32 8Z" fill="#fff" fill-opacity="0.9"/>
+      <path d="M32 16C23.2 16 16 23.2 16 32C16 40.8 23.2 48 32 48C40.8 48 48 40.8 48 32C48 23.2 40.8 16 32 16Z" fill="#81C784"/>
+      <path d="M32 24C27.6 24 24 27.6 24 32C24 36.4 27.6 40 32 40C36.4 40 40 36.4 40 32C40 27.6 36.4 24 32 24Z" fill="#FFC107"/>
+    </svg>
+    <h1 class="text-xl font-semibold text-white">Sibol</h1>
+  </div>
+  <nav class="flex-1 p-4 space-y-2 overflow-y-auto">
+    <button class="w-full text-left py-2 px-3 rounded hover:bg-gray-100 transition font-semibold sidebar-btn" data-section="dashboard">
+      <div class="flex items-center space-x-2 sidebar-icon-active">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7m-9 5v-4h4v4" />
+        </svg>
+        <span>Dashboard</span>
+      </div>
+    </button>
+    <button class="w-full text-left py-2 px-3 rounded hover:bg-gray-100 transition font-semibold sidebar-btn" data-section="fields">
+      <div class="flex items-center space-x-2 sidebar-icon-inactive">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7" />
+        </svg>
+        <span>Fields</span>
+      </div>
+    </button>
+    <button class="w-full text-left py-2 px-3 rounded hover:bg-gray-100 transition font-semibold sidebar-btn" data-section="insights">
+      <div class="flex items-center space-x-2 sidebar-icon-inactive">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2z" />
+        </svg>
+        <span>Insights</span>
+      </div>
+    </button>
+    <button class="w-full text-left py-2 px-3 rounded hover:bg-gray-100 transition font-semibold sidebar-btn" data-section="transactions">
+      <div class="flex items-center space-x-2 sidebar-icon-inactive">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h18M9 9h6m-6 4h6m-6 4h6" />
+        </svg>
+        <span>Transactions</span>
+      </div>
+    </button>
+    <button class="w-full text-left py-2 px-3 rounded hover:bg-gray-100 transition font-semibold sidebar-btn" data-section="profile">
+      <div class="flex items-center space-x-2 sidebar-icon-inactive">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0z" />
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+        </svg>
+        <span>Profile</span>
+      </div>
+    </button>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <button class="w-full text-left py-2 px-3 rounded hover:bg-gray-100 transition font-semibold sidebar-btn" data-section="settings">
+      <div class="flex items-center space-x-2 sidebar-icon-inactive">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37a1.724 1.724 0 002.572-1.065z" />
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+        <span>Settings</span>
+      </div>
+    </button>
+  </nav>
+</div>
+
+<!-- Main Content -->
+<div class="flex-1 ml-64 flex flex-col min-h-screen">
+  <!-- Top Bar -->
+  <div class="sticky top-0 z-10 bg-white shadow flex items-center justify-between px-6 py-4">
+    <div class="flex items-center space-x-4">
+      <h2 class="text-xl font-semibold" id="section-title">Dashboard</h2>
+      <div class="relative">
+        <input type="text" class="pl-8 pr-4 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600 text-sm" placeholder="Search fields, insights...">
+        <svg class="w-4 h-4 text-gray-500 absolute left-2 top-1/2 transform -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+      </div>
+    </div>
+    <div class="flex items-center space-x-4">
+      <button class="p-2 rounded-full hover:bg-gray-100" title="Notifications">
+        <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+        </svg>
+      </button>
+      <div class="flex items-center space-x-2">
+        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Profile" class="w-8 h-8 rounded-full">
+        <span class="text-sm font-medium">Maria</span>
+      </div>
+      <button class="text-sm text-gray-600 hover:text-green-600" onclick="showSection('login')">Logout</button>
+    </div>
+  </div>
+
+  <!-- Dashboard -->
+  <div id="section-dashboard" class="p-6 overflow-y-auto flex-1 block">
+    <h1 class="text-2xl font-semibold mb-4">Welcome back, Maria!</h1>
+    <p class="mb-4">Saturday, May 24, 2025 • Sunny, 28°C</p>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+      <div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
+        <div class="flex justify-between mb-2">
+          <div class="text-sm font-medium text-gray-600">Soil Moisture</div>
+          <div class="text-xs px-2 py-1 bg-green-100 text-green-800 rounded-full">Good</div>
+        </div>
+        <div class="text-3xl font-bold flex items-center">
+          68<span class="text-xl font-normal ml-2">%</span>
+        </div>
+        <div class="mt-2 bg-gray-200 rounded-full h-2 w-full">
+          <div class="h-full bg-green-600 rounded-full" style="width:68%"></div>
+        </div>
+      </div>
+      <div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
+        <div class="flex justify-between mb-2">
+          <div class="text-sm font-medium text-gray-600">Crop Health</div>
+          <div class="text-xs px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full">Monitor</div>
+        </div>
+        <div class="text-3xl font-bold flex items-center">
+          82<span class="text-xl font-normal ml-2">%</span>
+        </div>
+        <div class="mt-2 bg-gray-200 rounded-full h-2 w-full">
+          <div class="h-full bg-yellow-500 rounded-full" style="width:82%"></div>
+        </div>
+      </div>
+      <div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
+        <div class="flex justify-between mb-2">
+          <div class="text-sm font-medium text-gray-600">Growth Progress</div>
+        </div>
+        <div class="text-3xl font-bold mb-2">45<span class="text-xl font-normal ml-2">%</span></div>
+        <div class="mt-2 bg-gray-200 rounded-full h-2 w-full">
+          <div class="h-full bg-blue-500 rounded-full" style="width:45%"></div>
+        </div>
+        <div class="mt-2 text-xs text-gray-500">Est. harvest: 35 days</div>
+      </div>
+      <div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
+        <div class="flex justify-between mb-2">
+          <div class="text-sm font-medium text-gray-600">Yield Prediction</div>
+        </div>
+        <div class="flex items-center justify-center text-3xl font-bold mb-2">
+          4.8<span class="text-xl font-normal ml-2">t/ha</span>
+        </div>
+        <div class="flex items-center space-x-2 text-green-600 text-sm">
+          <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M12 7a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0V8.414l-4.293 4.293a1 1 0 01-1.414 0L8 10.414l-4.293 4.293a1 1 0 01-1.414-1.414l5-5a1 1 0 011.414 0L11 10.586 14.586 7H12z" clip-rule="evenodd" />
+          </svg>
+          <span>+8% from last season</span>
+        </div>
+      </div>
+    </div>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+      <div>
+        <h3 class="text-lg font-semibold mb-2 flex justify-between items-center">
+          <span>Soil Moisture Trend</span>
+          <select class="text-sm border rounded px-2 py-1">
+            <option>Last 7 days</option>
+            <option>Last 30 days</option>
+          </select>
+        </h3>
+        <div class="bg-white p-4 h-64 rounded shadow">
+          <canvas id="soilMoistureChart"></canvas>
+        </div>
+      </div>
+      <div>
+        <h3 class="text-lg font-semibold mb-2 flex justify-between items-center">
+          <span>Growth Progress</span>
+          <select class="text-sm border rounded px-2 py-1">
+            <option>North Field</option>
+            <option>South Field</option>
+            <option>East Field</option>
+            <option>West Field</option>
+          </select>
+        </h3>
+        <div class="bg-white p-4 h-64 rounded shadow">
+          <canvas id="growthChart"></canvas>
+        </div>
+      </div>
+    </div>
+    <div class="mb-8">
+      <h3 class="text-lg font-semibold mb-4">Sibol Insight</h3>
+      <div class="bg-green-50 border-l-4 border-green-400 p-4 rounded-lg flex items-start space-x-4">
+        <svg class="w-12 h-12 text-green-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+        </svg>
+        <div class="flex-1">
+          <h4 class="font-semibold text-green-800 mb-2">Optimize your yield</h4>
+          <p class="text-green-700 mb-4">Based on current soil conditions and weather forecast, applying nitrogen fertilizer within the next 48 hours could increase your yield by up to 12%. The optimal application rate for your field size (3.5 hectares) would be approximately 120kg.</p>
+          <div class="flex space-x-3">
+            <button class="btn-primary px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">View Recommendation</button>
+            <button class="px-4 py-2 border border-green-600 text-green-700 rounded hover:bg-green-100">Dismiss</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+      <div>
+        <div class="flex justify-between items-center mb-2">
+          <h3 class="text-lg font-semibold">Recent Activities</h3>
+          <button class="text-sm text-green-600 font-medium">View All</button>
+        </div>
+        <div class="bg-white rounded-lg shadow p-4 space-y-4">
+          <div class="flex items-center space-x-4">
+            <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+              <svg class="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M13 7H7v6h6V7z" />
+                <path fill-rule="evenodd" d="M7 2a1 1 0 012 0v1h2V2a1 1 0 112 0v1h2a2 2 0 012 2v2h1a1 1 0 110 2h-1v2h1a1 1 0 110 2h-1v2a2 2 0 01-2 2h-2v1a1 1 0 11-2 0v-1H9v1a1 1 0 11-2 0v-1H5a2 2 0 01-2-2v-2H2a1 1 0 110-2h1V9H2a1 1 0 010-2h1V5a2 2 0 012-2h2V2z" clip-rule="evenodd" />
+              </svg>
+            </div>
+            <div class="flex-1">
+              <div class="flex justify-between mb-1">
+                <div class="font-medium">Irrigation Applied</div>
+                <div class="text-xs text-gray-500">2 hours ago</div>
+              </div>
+              <div class="text-sm text-gray-600">North Field was irrigated for 45 minutes</div>
+            </div>
+          </div>
+          <div class="flex items-center space-x-4">
+            <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
+              <svg class="w-5 h-5 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd" />
+              </svg>
+            </div>
+            <div class="flex-1">
+              <div class="flex justify-between mb-1">
+                <div class="font-medium">Fertilizer Applied</div>
+                <div class="text-xs text-gray-500">Yesterday</div>
+              </div>
+              <div class="text-sm text-gray-600">Nitrogen fertilizer applied to all fields</div>
+            </div>
+          </div>
+          <div class="flex items-center space-x-4">
+            <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
+              <svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+              </svg>
+            </div>
+            <div class="flex-1">
+              <div class="flex justify-between mb-1">
+                <div class="font-medium">System Alert</div>
+                <div class="text-xs text-gray-500">2 days ago</div>
+              </div>
+              <div class="text-sm text-gray-600">Low soil moisture detected in South Field</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="flex justify-between items-center mb-2">
+          <h3 class="text-lg font-semibold">Drone Footage</h3>
+          <button class="text-sm text-green-600 font-medium">View All</button>
+        </div>
+        <div class="bg-white rounded-lg shadow overflow-hidden">
+          <div class="relative">
+            <svg class="w-full h-48" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+              <rect width="400" height="200" fill="#81C784" />
+              <path d="M0,200 L400,200 L400,150 C350,170 300,140 250,160 C200,180 150,150 100,170 C50,190 0,160 0,180 Z" fill="#2E7D32" />
+              <path d="M0,200 L400,200 L400,170 C350,180 300,160 250,170 C200,180 150,160 100,170 C50,180 0,170 0,180 Z" fill="#1B5E20" />
+              <circle cx="350" cy="50" r="20" fill="#FFC107" />
+              <g stroke="#1B5E20" stroke-width="1" opacity="0.5">
+                <line x1="50" y1="100" x2="350" y2="100" />
+                <line x1="50" y1="120" x2="350" y2="120" />
+                <line x1="50" y1="140" x2="350" y2="140" />
+                <line x1="50" y1="160" x2="350" y2="160" />
+                <line x1="50" y1="180" x2="350" y2="180" />
+                <line x1="50" y1="100" x2="50" y2="180" />
+                <line x1="100" y1="100" x2="100" y2="180" />
+                <line x1="150" y1="100" x2="150" y2="180" />
+                <line x1="200" y1="100" x2="200" y2="180" />
+                <line x1="250" y1="100" x2="250" y2="180" />
+                <line x1="300" y1="100" x2="300" y2="180" />
+                <line x1="350" y1="100" x2="350" y2="180" />
+              </g>
+            </svg>
+            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
+              <div class="text-white text-sm font-medium">North Field<br/><span class="opacity-80">Captured today, 10:30 AM</span></div>
+            </div>
+            <button class="absolute inset-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white/80 rounded-full p-4 hover:bg-white transition duration-300">
+              <svg class="h-6 w-6 text-green-800" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </button>
+          </div>
+          <div class="p-3 flex justify-between items-center">
+            <div class="flex space-x-4">
+              <button class="flex items-center text-sm text-gray-600 hover:text-green-600 transition">
+                <svg class="h-4 w-4 mr-1" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Download
+              </button>
+              <button class="flex items-center text-sm text-gray-600 hover:text-green-600 transition">
+                <svg class="h-4 w-4 mr-1" fill="currentColor" viewBox="0 7 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16l4-4m0 0l4 4m-4-4v8" stroke="currentColor"/>
+                </svg>
+                Share
+              </button>
+            </div>
+            <button class="text-sm text-green-600 font-medium hover:underline">Analyze</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Fields -->
+  <div id="section-fields" class="p-6 overflow-y-auto flex-1 hidden">
+    <div class="flex justify-between items-center mb-6">
+      <h2 class="text-2xl font-semibold">Your Fields</h2>
+      <button class="btn-primary px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 flex items-center">
+        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+        </svg>
+        Add New Field
+      </button>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Field Card 1 -->
+      <div class="bg-white rounded-lg shadow overflow-hidden hover:shadow-lg transition">
+        <div class="relative h-40 bg-green-100">
+          <svg class="w-full h-full" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+            <rect width="400" height="200" fill="#A5D6A7" />
+            <path d="M0,200 L400,200 L400,150 C350,170 300,140 250,160 C200,180 150,150 100,170 C50,190 0,160 0,180 Z" fill="#81C784" />
+            <path d="M0,200 L400,200 L400,170 C350,180 300,160 250,170 C200,180 150,160 100,170 C50,180 0,170 0,180 Z" fill="#4CAF50" />
+            <circle cx="350" cy="50" r="20" fill="#FFC107" />
+          </svg>
+          <div class="absolute top-2 right-2 bg-white/80 rounded-full p-2">
+            <svg class="w-5 h-5 text-green-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+            </svg>
+          </div>
+        </div>
+        <div class="p-4">
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="font-semibold text-lg">North Field</h3>
+            <span class="text-xs px-2 py-1 bg-green-100 text-green-800 rounded-full">Active</span>
+          </div>
+          <div class="grid grid-cols-2 gap-2 text-sm mb-3">
+            <div class="text-gray-600">Size:</div>
+            <div>1.5 hectares</div>
+            <div class="text-gray-600">Crop:</div>
+            <div>Rice (IR64)</div>
+            <div class="text-gray-600">Planted:</div>
+            <div>April 10, 2025</div>
+            <div class="text-gray-600">Status:</div>
+            <div class="flex items-center">
+              <div class="w-2 h-2 rounded-full bg-green-500 mr-2"></div>
+              Healthy
+            </div>
+            <div class="text-gray-600">Soil pH:</div>
+            <div>6.2</div>
+          </div>
+          <div class="flex justify-between pt-3 border-t">
+            <button class="text-sm text-green-600 font-medium hover:underline">View Details</button>
+            <button class="text-sm text-gray-600 hover:text-green-600">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Field Card 2 -->
+      <div class="bg-white rounded-lg shadow overflow-hidden hover:shadow-lg transition">
+        <div class="relative h-40 bg-yellow-100">
+          <svg class="w-full h-full" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+            <rect width="400" height="200" fill="#FFF9C4" />
+            <path d="M0,200 L400,200 L400,150 C350,170 300,140 250,160 C200,180 150,150 100,170 C50,190 0,160 0,180 Z" fill="#FFEE58" />
+            <path d="M0,200 L400,200 L400,170 C350,180 300,160 250,170 C200,180 150,160 100,170 C50,180 0,170 0,180 Z" fill="#FDD835" />
+            <circle cx="350" cy="50" r="20" fill="#FFC107" />
+          </svg>
+          <div class="absolute top-2 right-2 bg-white/80 rounded-full p-2">
+            <svg class="w-5 h-5 text-green-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+            </svg>
+          </div>
+        </div>
+        <div class="p-4">
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="font-semibold text-lg">South Field</h3>
+            <span class="text-xs px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full">Needs Attention</span>
+          </div>
+          <div class="grid grid-cols-2 gap-2 text-sm mb-3">
+            <div class="text-gray-600">Size:</div>
+            <div>2.0 hectares</div>
+            <div class="text-gray-600">Crop:</div>
+            <div>Corn (Yellow)</div>
+            <div class="text-gray-600">Planted:</div>
+            <div>April 5, 2025</div>
+            <div class="text-gray-600">Status:</div>
+            <div class="flex items-center">
+              <div class="w-2 h-2 rounded-full bg-yellow-500 mr-2"></div>
+              Low Moisture
+            </div>
+            <div class="text-gray-600">Soil pH:</div>
+            <div>5.8</div>
+          </div>
+          <div class="flex justify-between pt-3 border-t">
+            <button class="text-sm text-green-600 font-medium hover:underline">View Details</button>
+            <button class="text-sm text-gray-600 hover:text-green-600">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Field Card 3 -->
+      <div class="bg-white rounded-lg shadow overflow-hidden hover:shadow-lg transition">
+        <div class="relative h-40 bg-blue-100">
+          <svg class="w-full h-full" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+            <rect width="400" height="200" fill="#BBDEFB" />
+            <path d="M0,200 L400,200 L400,150 C350,170 300,140 250,160 C200,180 150,150 100,170 C50,190 0,160 0,180 Z" fill="#90CAF9" />
+            <path d="M0,200 L400,200 L400,170 C350,180 300,160 250,170 C200,180 150,160 100,170 C50,180 0,170 0,180 Z" fill="#42A5F5" />
+            <circle cx="350" cy="50" r="20" fill="#FFC107" />
+          </svg>
+          <div class="absolute top-2 right-2 bg-white/80 rounded-full p-2">
+            <svg class="w-5 h-5 text-green-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+            </svg>
+          </div>
+        </div>
+        <div class="p-4">
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="font-semibold text-lg">East Field</h3>
+            <span class="text-xs px-2 py-1 bg-green-100 text-green-800 rounded-full">Active</span>
+          </div>
+          <div class="grid grid-cols-2 gap-2 text-sm mb-3">
+            <div class="text-gray-600">Size:</div>
+            <div>1.8 hectares</div>
+            <div class="text-gray-600">Crop:</div>
+            <div>Wheat</div>
+            <div class="text-gray-600">Planted:</div>
+            <div>March 20, 2025</div>
+            <div class="text-gray-600">Status:</div>
+            <div class="flex items-center">
+              <div class="w-2 h-2 rounded-full bg-green-500 mr-2"></div>
+              Healthy
+            </div>
+            <div class="text-gray-600">Soil pH:</div>
+            <div>6.5</div>
+          </div>
+          <div class="flex justify-between pt-3 border-t">
+            <button class="text-sm text-green-600 font-medium hover:underline">View Details</button>
+            <button class="text-sm text-gray-600 hover:text-green-600">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Field Card 4 -->
+      <div class="bg-white rounded-lg shadow overflow-hidden hover:shadow-lg transition">
+        <div class="relative h-40 bg-red-100">
+          <svg class="w-full h-full" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+            <rect width="400" height="200" fill="#FFCDD2" />
+            <path d="M0,200 L400,200 L400,150 C350,170 300,140 250,160 C200,180 150,150 100,170 C50,190 0,160 0,180 Z" fill="#EF9A9A" />
+            <path d="M0,200 L400,200 L400,170 C350,180 300,160 250,170 C200,180 150,160 100,170 C50,180 0,170 0,180 Z" fill="#F44336" />
+            <circle cx="350" cy="50" r="20" fill="#FFC107" />
+          </svg>
+          <div class="absolute top-2 right-2 bg-white/80 rounded-full p-2">
+            <svg class="w-5 h-5 text-green-700" fill="none" stroke="currentColor" viewBox="0 0 24 19">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+            </svg>
+          </div>
+        </div>
+        <div class="p-4">
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="font-semibold text-lg">West Field</h3>
+            <span class="text-xs px-2 py-1 bg-red-100 text-red-800 rounded-full">Critical</span>
+          </div>
+          <div class="grid grid-cols-2 gap-2 text-sm mb-3">
+            <div class="text-gray-600">Size:</div>
+            <div>1.2 hectares</div>
+            <div class="text-gray-600">Crop:</div>
+            <div>Soybean</div>
+            <div class="text-gray-600">Planted:</div>
+            <div>April 15, 2025</div>
+            <div class="text-gray-600">Status:</div>
+            <div class="flex items-center">
+              <div class="w-2 h-2 rounded-full bg-red-500 mr-2"></div>
+              Pest Infestation
+            </div>
+            <div class="text-gray-600">Soil pH:</div>
+            <div>5.5</div>
+          </div>
+          <div class="flex justify-between pt-3 border-t">
+            <button class="text-sm text-green-600 font-medium hover:underline">View Details</button>
+            <button class="text-sm text-gray-600 hover:text-green-600">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Insights -->
+  <div id="section-insights" class="p-6 overflow-y-auto flex-1 hidden">
+    <h2 class="text-2xl font-semibold mb-6">Insights</h2>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+      <div class="bg-white p-6 rounded-lg shadow">
+        <h3 class="text-lg font-semibold mb-4">Yield Optimization Recommendations</h3>
+        <div class="space-y-4">
+          <div class="border-l-4 border-green-400 p-4 bg-green-50 rounded-lg">
+            <h4 class="font-semibold text-green-800">Nitrogen Application</h4>
+            <p class="text-sm text-green-700">Apply 120kg of nitrogen fertilizer within 48 hours to North Field to boost yield by up to 12%.</p>
+            <button class="mt-2 text-sm text-green-600 font-medium hover:underline">View Details</button>
+          </div>
+          <div class="border-l-4 border-yellow-400 p-4 bg-yellow-50 rounded-lg">
+            <h4 class="font-semibold text-yellow-800">Irrigation Alert</h4>
+            <p class="text-sm text-yellow-700">South Field shows low moisture levels. Schedule irrigation for 1 hour tomorrow morning.</p>
+            <button class="mt-2 text-sm text-green-600 font-medium hover:underline">View Details</button>
+          </div>
+          <div class="border-l-4 border-red-400 p-4 bg-red-50 rounded-lg">
+            <h4 class="font-semibold text-red-800">Pest Control</h4>
+            <p class="text-sm text-red-700">West Field shows signs of pest infestation. Apply organic pesticide within 24 hours.</p>
+            <button class="mt-2 text-sm text-green-600 font-medium hover:underline">View Details</button>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow">
+        <h3 class="text-lg font-semibold mb-4">Weather Impact Analysis</h3>
+        <div class="bg-gray-100 p-6 rounded-lg">
+          <p class="text-sm text-gray-600 mb-4">Weather forecast for the next 5 days, showing rainfall probability, temperature, and humidity in a responsive chart. Adjust irrigation and planting schedules based on expected conditions. High rainfall probability (>50%) may require reduced irrigation.</p>
+          <div class="bg-white p-6 rounded-lg shadow-md h-[400px] overflow-hidden">
+            <canvas id="weatherChart" class="w-full h-full"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bg-white p-6 rounded-lg shadow">
+      <h3 class="text-lg font-semibold mb-4">Pest Risk Assessment</h3>
+      <div class="bg-gray-100 p-6 rounded-lg">
+        <p class="text-sm text-gray-600 mb-4">Pest risk levels and estimated pest population across fields based on recent drone scans, displayed in a responsive chart. High risk levels (>50%) indicate immediate action needed.</p>
+        <div class="bg-white p-6 rounded-lg shadow-md h-[400px] overflow-hidden">
+          <canvas id="pestChart" class="w-full h-full"></canvas>
+        </div>
+      </div>
+    </div>
+    <div class="mt-6 bg-white p-6 rounded-lg shadow">
+      <h3 class="text-lg font-semibold mb-4">Field Conditions Summary</h3>
+      <table class="w-full text-sm text-gray-600">
+        <thead>
+          <tr class="bg-gray-100">
+            <th class="p-2 text-left">Field</th>
+            <th class="p-2 text-left">Soil Moisture</th>
+            <th class="p-2 text-left">Crop Health</th>
+            <th class="p-2 text-left">Pest Risk</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="p-2">North Field</td>
+            <td class="p-2">68%</td>
+            <td class="p-2">Healthy</td>
+            <td class="p-2">Low</td>
+          </tr>
+          <tr>
+            <td class="p-2">South Field</td>
+            <td class="p-2">45%</td>
+            <td class="p-2">Monitor</td>
+            <td class="p-2">Medium</td>
+          </tr>
+          <tr>
+            <td class="p-2">East Field</td>
+            <td class="p-2">72%</td>
+            <td class="p-2">Healthy</td>
+            <td class="p-2">Low</td>
+          </tr>
+          <tr>
+            <td class="p-2">West Field</td>
+            <td class="p-2">60%</td>
+            <td class="p-2">Critical</td>
+            <td class="p-2">High</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+<!-- Profile -->
+<div id="section-profile" class="p-6 overflow-y-auto flex-1 hidden">
+  <h2 class="text-2xl font-semibold mb-6">Profile</h2>
+  <div class="bg-white p-6 rounded-lg shadow mb-6">
+    <div class="flex items-center space-x-4 mb-6">
+      <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Profile" class="w-16 h-16 rounded-full">
+      <div>
+        <h3 class="text-lg font-semibold">Maria Santos</h3>
+        <p class="text-sm text-gray-600">Farmer since 2015</p>
+      </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div>
+        <h4 class="font-semibold mb-2">Personal Information</h4>
+        <div class="space-y-2 text-sm text-gray-600">
+          <p><span class="font-medium">Email:</span> maria.santos@example.com</p>
+          <p><span class="font-medium">Phone:</span> +63 912 345 6789</p>
+          <p><span class="font-medium">Location:</span> Nueva Ecija, Philippines</p>
+          <p><span class="font-medium">Joined:</span> January 15, 2015</p>
+          <p><span class="font-medium">Preferred Language:</span> Tagalog</p>
+        </div>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-2">Farm Details</h4>
+        <div class="space-y-2 text-sm text-gray-600">
+          <p><span class="font-medium">Total Area:</span> 6.5 hectares</p>
+          <p><span class="font-medium">Crops:</span> Rice, Corn, Wheat, Soybean</p>
+          <p><span class="font-medium">Fields:</span> 4 (North, South, East, West)</p>
+          <p><span class="font-medium">Subscription:</span> Premium Plan</p>
+        </div>
+      </div>
+    </div>
+    <div class="mt-6">
+      <button class="btn-primary px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 text-align ">Edit Profile</button>
+    </div>
+  </div>
+  <!-- New Recent Activity Section -->
+  <div class="bg-white p-6 rounded-lg shadow">
+    <h4 class="font-semibold mb-4">Recent Activity</h4>
+    <div class="space-y-2 text-sm text-gray-600">
+      <p><span class="font-medium">May 25, 2025:</span> Updated crop data for North Field (Rice)</p>
+      <p><span class="font-medium">May 20, 2025:</span> Added new irrigation schedule for South Field</p>
+      <p><span class="font-medium">May 15, 2025:</span> Completed soil analysis for East Field</p>
+    </div>
+
+  </div>
+</div>
+  
+    <!-- Transactions -->
+    <div id="section-transactions" class="p-4 md:p-6 overflow-y-auto flex-1 hidden">
+      <h2 class="text-xl md:text-2xl font-semibold mb-6">Transactions</h2>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 mb-8">
+        <!-- Purchase Supplies -->
+        <div class="bg-white p-4 md:p-6 rounded-lg shadow">
+          <h3 class="text-base md:text-lg font-semibold mb-4">Purchase Supplies</h3>
+          <div class="space-y-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-600">Supply Type</label>
+              <select class="w-full border rounded px-2 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-600">
+                <option>Seeds</option>
+                <option>Fertilizers</option>
+                <option>Pesticides</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-600">Item</label>
+              <select class="w-full border rounded px-2 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-600">
+                <option>Rice Seeds (IR64)</option>
+                <option>Nitrogen Fertilizer</option>
+                <option>Organic Pesticide</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-600">Quantity</label>
+              <input type="number" class="w-full border rounded px-2 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-600" placeholder="Enter quantity (kg)" min="1">
+            </div>
+            <button class="btn-primary px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 w-full">Add to Cart</button>
+          </div>
+        </div>
+        <!-- Schedule Services -->
+        <div class="bg-white p-4 md:p-6 rounded-lg shadow">
+          <h3 class="text-base md:text-lg font-semibold mb-4">Schedule Services</h3>
+          <div class="space-y-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-600">Service Type</label>
+              <select class="w-full border rounded px-2 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-600">
+                <option>Irrigation</option>
+                <option>Pest Control</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-600">Field</label>
+              <select class="w-full border rounded px-2 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-600">
+                <option>North Field</option>
+                <option>South Field</option>
+                <option>East Field</option>
+                <option>West Field</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-600">Schedule Date</label>
+              <input type="date" class="w-full border rounded px-2 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-600" min="2025-05-27">
+            </div>
+            <button class="btn-primary px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 w-full">Schedule Service</button>
+          </div>
+        </div>
+      </div>
+      <!-- Buy Rice -->
+      <div class="bg-white p-4 md:p-6 rounded-lg shadow mb-8">
+        <h3 class="text-base md:text-lg font-semibold mb-4">Buy Rice</h3>
+        <div class="space-y-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-600">Rice Type</label>
+            <select class="w-full border rounded px-2 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-600">
+              <option>Rice (IR64)</option>
+              <option>Sticky Rice</option>
+              <option>Brown Rice</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-600">Quantity</label>
+            <input type="number" class="w-full border rounded px-2 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-600" placeholder="Enter quantity (kg)" min="1">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-600">Delivery Address</label>
+            <input type="text" class="w-full border rounded px-2 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-600" placeholder="Enter delivery address">
+          </div>
+          <button class="btn-primary px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 w-full">Place Order</button>
+        </div>
+      </div>
+      <!-- Transaction History -->
+      <div class="bg-white p-4 md:p-6 rounded-lg shadow">
+        <h3 class="text-base md:text-lg font-semibold mb-4">Transaction History</h3>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-gray-600">
+            <thead>
+              <tr class="bg-gray-100">
+                <th class="p-2 text-left">Date</th>
+                <th class="p-2 text-left">Item/Service</th>
+                <th class="p-2 text-left">Quantity</th>
+                <th class="p-2 text-left">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="p-2">May 23, 2025</td>
+                <td class="p-2">Nitrogen Fertilizer</td>
+                <td class="p-2">120 kg</td>
+                <td class="p-2"><span class="text-xs px-2 py-1 bg-green-100 text-green-800 rounded-full">Delivered</span></td>
+              </tr>
+              <tr>
+                <td class="p-2">May 20, 2025</td>
+                <td class="p-2">Irrigation (North Field)</td>
+                <td class="p-2">45 mins</td>
+                <td class="p-2"><span class="text-xs px-2 py-1 bg-blue-100 text-blue-800 rounded-full">Completed</span></td>
+              </tr>
+              <tr>
+                <td class="p-2">May 18, 2025</td>
+                <td class="p-2">Rice (IR64)</td>
+                <td class="p-2">50 kg</td>
+                <td class="p-2"><span class="text-xs px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full">Pending</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+        <!-- Settings -->
+    <div id="section-settings" class="p-4 md:p-6 overflow-y-auto flex-1 hidden">
+      <h2 class="text-xl md:text-2xl font-semibold mb-6">Settings</h2>
+      <div class="bg-white p-4 md:p-6 rounded-lg shadow">
+        <h3 class="text-base md:text-lg font-semibold mb-4">Account Settings</h3>
+        <div class="space-y-4">
+          <div>
+            <h4 class="font-medium text-gray-600">Notification Preferences</h4>
+            <div class="mt-2 space-y-2 text-sm text-gray-600">
+              <label class="flex items-center">
+                <input type="checkbox" class="mr-2" checked> Email Alerts
+              </label>
+              <label class="flex items-center">
+                <input type="checkbox" class="mr-2"> SMS Alerts
+              </label>
+              <label class="flex items-center">
+                <input type="checkbox" class="mr-2" checked> Push Notifications
+              </label>
+            </div>
+          </div>
+          <div>
+            <h4 class="font-medium text-gray-600">Subscription Management</h4>
+            <p class="text-sm text-gray-600 mt-2">Current Plan: Premium (Renews on June 24, 2025)</p>
+            <button class="mt-2 text-sm text-green-600 font-medium hover:underline">Manage Subscription</button>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+<script>
+  // Navigation Logic
+  function showSection(sectionId) {
+    document.querySelectorAll('[id^="section-"]').forEach(section => {
+      section.classList.add('hidden');
+    });
+    document.getElementById(`section-${sectionId}`).classList.remove('hidden');
+    document.getElementById('section-title').textContent = sectionId.charAt(0).toUpperCase() + sectionId.slice(1);
+    
+    document.querySelectorAll('.sidebar-btn').forEach(btn => {
+      const div = btn.querySelector('div');
+      div.classList.remove('sidebar-icon-active', 'text-green-700');
+      div.classList.add('sidebar-icon-inactive', 'text-gray-700');
+      if (btn.getAttribute('data-section') === sectionId) {
+        div.classList.remove('sidebar-icon-inactive', 'text-gray-700');
+        div.classList.add('sidebar-icon-active', 'text-green-700');
+      }
+    });
+  }
+
+  document.querySelectorAll('.sidebar-btn').forEach(button => {
+    button.addEventListener('click', () => {
+      const section = button.getAttribute('data-section');
+      showSection(section);
+    });
+  });
+
+  // Chart.js Initialization
+  const soilMoistureChart = new Chart(document.getElementById('soilMoistureChart'), {
+    type: 'line',
+    data: {
+      labels: ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5', 'Day 6', 'Day 7'],
+      datasets: [{
+        label: 'Soil Moisture (%)',
+        data: [65, 67, 68, 70, 69, 68, 68],
+        borderColor: '#2E7D32',
+        fill: false,
+        tension: 0.4
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 100,
+          title: {
+            display: true,
+            text: 'Moisture (%)'
+          }
+        },
+        x: {
+          title: {
+            display: true,
+            text: 'Days'
+          }
+        }
+      },
+      plugins: {
+        legend: {
+          display: true
+        },
+        tooltip: {
+          enabled: true
+        }
+      }
+    }
+  });
+
+  const growthChart = new Chart(document.getElementById('growthChart'), {
+    type: 'bar',
+    data: {
+      labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5'],
+      datasets: [{
+        label: 'Growth Progress (%)',
+        data: [10, 20, 30, 40, 45],
+        backgroundColor: '#81C784'
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 100,
+          title: {
+            display: true,
+            text: 'Progress (%)'
+          }
+        },
+        x: {
+          title: {
+            display: true,
+            text: 'Weeks'
+          }
+        }
+      },
+      plugins: {
+        legend: {
+          display: true
+        },
+        tooltip: {
+          enabled: true
+        }
+      }
+    }
+  });
+
+  const weatherChart = new Chart(document.getElementById('weatherChart'), {
+    type: 'line',
+    data: {
+      labels: ['May 24', 'May 25', 'May 26', 'May 27', 'May 28'],
+      datasets: [
+        {
+          label: 'Rainfall Probability (%)',
+          data: [20, 30, 70, 50, 40],
+          borderColor: '#0288D1',
+          backgroundColor: 'rgba(2, 136, 209, 0.3)',
+          fill: true,
+          tension: 0.4,
+          yAxisID: 'y',
+          borderWidth: 3,
+          pointRadius: 5,
+          pointBackgroundColor: '#0288D1'
+        },
+        {
+          label: 'Temperature (°C)',
+          data: [28, 27, 26, 25, 27],
+          borderColor: '#D32F2F',
+          backgroundColor: 'rgba(211, 47, 47, 0.3)',
+          fill: true,
+          tension: 0.4,
+          yAxisID: 'y1',
+          borderWidth: 3,
+          pointRadius: 5,
+          pointBackgroundColor: '#D32F2F'
+        },
+        {
+          label: 'Humidity (%)',
+          data: [65, 70, 75, 72, 68],
+          borderColor: '#2E7D32',
+          backgroundColor: 'rgba(46, 125, 50, 0.3)',
+          fill: true,
+          tension: 0.4,
+          yAxisID: 'y2',
+          borderWidth: 3,
+          pointRadius: 5,
+          pointBackgroundColor: '#2E7D32'
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 100,
+          title: {
+            display: true,
+            text: 'Rainfall Probability (%)',
+            font: { size: 14, weight: 'bold' }
+          },
+          grid: { display: true }
+        },
+        y1: {
+          position: 'right',
+          beginAtZero: true,
+          max: 40,
+          title: {
+            display: true,
+            text: 'Temperature (°C)',
+            font: { size: 14, weight: 'bold' }
+          },
+          grid: { display: false }
+        },
+        y2: {
+          position: 'right',
+          beginAtZero: true,
+          max: 100,
+          title: {
+            display: true,
+            text: 'Humidity (%)',
+            font: { size: 14, weight: 'bold' }
+          },
+          grid: { display: false }
+        },
+        x: {
+          title: {
+            display: true,
+            text: 'Date',
+            font: { size: 14, weight: 'bold' }
+          }
+        }
+      },
+      plugins: {
+        legend: {
+          display: true,
+          position: 'top',
+          labels: {
+            font: { size: 12, weight: 'bold' },
+            usePointStyle: true,
+            pointStyle: 'circle'
+          }
+        },
+        tooltip: {
+          mode: 'index',
+          intersect: false,
+          backgroundColor: 'rgba(0, 0, 0, 0.8)',
+          titleFont: { size: 14, weight: 'bold' },
+          bodyFont: { size: 12 },
+          callbacks: {
+            label: function(context) {
+              let label = context.dataset.label || '';
+              if (label) {
+                label += ': ';
+              }
+              label += context.parsed.y + (context.dataset.yAxisID === 'y1' ? '°C' : '%');
+              return label;
+            }
+          }
+        },
+        annotation: {
+          annotations: {
+            line1: {
+              type: 'line',
+              yMin: 50,
+              yMax: 50,
+              borderColor: '#F57C00',
+              borderWidth: 2,
+              borderDash: [5, 5],
+              label: {
+                content: 'High Rain Risk (>50%)',
+                enabled: true,
+                position: 'end',
+                backgroundColor: '#F57C00',
+                font: { size: 12, weight: 'bold' },
+                color: '#FFFFFF',
+                padding: 6
+              }
+            }
+          }
+        }
+      }
+    }
+  });
+
+  const pestChart = new Chart(document.getElementById('pestChart'), {
+    type: 'bar',
+    data: {
+      labels: ['North Field', 'South Field', 'East Field', 'West Field'],
+      datasets: [
+        {
+          label: 'Pest Risk Level (%)',
+          data: [10, 40, 15, 80],
+          backgroundColor: ['#4CAF50', '#FFCA28', '#4CAF50', '#D32F2F'],
+          borderColor: ['#388E3C', '#FFB300', '#388E3C', '#B71C1C'],
+          borderWidth: 2,
+          barThickness: 40
+        },
+        {
+          label: 'Est. Pest Population',
+          data: [50, 200, 75, 400],
+          type: 'line',
+          borderColor: '#0288D1',
+          backgroundColor: '#0288D1',
+          fill: false,
+          tension: 0.4,
+          yAxisID: 'y1',
+          borderWidth: 3,
+          pointRadius: 5,
+          pointBackgroundColor: '#0288D1'
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 100,
+          title: {
+            display: true,
+            text: 'Risk Level (%)',
+            font: { size: 14, weight: 'bold' }
+          },
+          grid: { display: true }
+        },
+        y1: {
+          position: 'right',
+          beginAtZero: true,
+          max: 500,
+          title: {
+            display: true,
+            text: 'Est. Pest Population',
+            font: { size: 14, weight: 'bold' }
+          },
+          grid: { display: false }
+        },
+        x: {
+          title: {
+            display: true,
+            text: 'Fields',
+            font: { size: 14, weight: 'bold' }
+          }
+        }
+      },
+      plugins: {
+        legend: {
+          display: true,
+          position: 'top',
+          labels: {
+            font: { size: 12, weight: 'bold' },
+            usePointStyle: true,
+            pointStyle: 'circle'
+          }
+        },
+        tooltip: {
+          mode: 'index',
+          intersect: false,
+          backgroundColor: 'rgba(0, 0, 0, 0.8)',
+          titleFont: { size: 14, weight: 'bold' },
+          bodyFont: { size: 12 },
+          callbacks: {
+            label: function(context) {
+              let label = context.dataset.label || '';
+              if (label) {
+                label += ': ';
+              }
+              label += context.parsed.y + (context.dataset.label === 'Pest Risk Level (%)' ? '%' : '');
+              return label;
+            }
+          }
+        },
+        datalabels: {
+          display: function(context) {
+            return context.dataset.type === 'bar';
+          },
+          anchor: 'end',
+          align: 'top',
+          font: { size: 12, weight: 'bold' },
+          formatter: function(value) {
+            return value + '%';
+          }
+        }
+      }
+    }
+  });
+</script>
+</body>
+</html>
