@@ -31,6 +31,6 @@ SIBOL addresses key agricultural challenges—such as long crop cycles, unpredic
 - Smallholder farmers  
 - Farm managers and cooperatives  
 - Agronomists and agricultural extension workers  
-- 🏛Local governments and sustainability advocates
+- Local governments and sustainability advocates
 
 
